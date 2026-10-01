@@ -9,9 +9,9 @@ SimulationMode              = 'FeedbackOnly';
 [PostProcessingConfig,PreProcessingVariation,InputFiles,Modifications] = GetParametersForDLC1p2(SimulationMode);
 
 % generate simulation folder and copy all files from OpenFAST and TemplateFolder to SimulationFolder
-ExeFile                     = 'openfast_x64.exe';
+ExeFile                     = 'openfast_x64_v4.exe';
 SimulationFolder            = ['SimulationResults_',SimulationMode];
-TemplateFolder              = '../IEA-15-240-RWT-Monopile';
+TemplateFolder              = '../IEA10-198-RWT';
 if ~exist(SimulationFolder,'dir')
     mkdir(SimulationFolder)
 end
@@ -32,4 +32,4 @@ PlotTimeResults(TimeResults,PostProcessingConfig);
 Statistics                  = CalculateStatistics(TimeResults,PostProcessingConfig);
 
 % Evaluate only, if you want to overwrite the results: 
-% save(['Statistics_',SimulationMode],'Statistics')
+save(['Statistics_',SimulationMode],'Statistics')
