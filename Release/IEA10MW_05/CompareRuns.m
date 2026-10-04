@@ -43,7 +43,7 @@ for iSimulationMode = 1:nSimulationModes
 end
 
 %% Plots
-VS_MaxTq    = 21765444.21450; % Maximum generator torque in Region 3 [Nm] 
+VS_MaxTq    = 15600000; % Maximum generator torque in Region 3 [Nm] 
 
 figure('Name','Life-time weighted DEL')
 subplot(311)
