@@ -114,7 +114,7 @@ nSeed       = length(PreProcessingVariation{2,2});
 for iURef = 1:nURef
     ID = iURef;
     PostProcessingConfig.Plots.BasicTimePlot{ID}.Enable     = 1;
-    PostProcessingConfig.Plots.BasicTimePlot{ID}.Channels   = {'Wind1VelX';'BldPitch1';'RotSpeed';} ;
+    PostProcessingConfig.Plots.BasicTimePlot{ID}.Channels   = {'Wind1VelX';'BldPitch1';'RotSpeed';'TwrBsMyt'} ;
     PostProcessingConfig.Plots.BasicTimePlot{ID}.gca.xlim   = [0 600]+StartTime;
     PostProcessingConfig.Plots.BasicTimePlot{ID}.IndicesConsideredDataFiles = [1:nSeed]+(iURef-1)*nSeed;
 end
@@ -129,4 +129,29 @@ PostProcessingConfig.CalculateStatistics = {
     'max'           @(Data,Time)max(Data(Time>=StartTime)) {'GenTq'}    
     }; 
 
+
+% CalculateFrequencyResults
+Step                    = 50;
+nData                   = 600*100/Step; % assuming 100 Hz and 10 min
+nBlocks                 = 4;
+window                  = nData/nBlocks;
+AutoSpectrumChannels    = {'TwrBsMyt';};
+PostProcessingConfig.CalculateFrequencyResults = {
+    'AutoSpectrum'      @(Data,Time)EstimateAutoSpectrum(Data,Time,Step,StartTime=StartTime,window=window)  AutoSpectrumChannels;
+    }; 
+
+% PlotFrequencyResults
+for iURef = 1:nURef
+    ID = iURef;
+    PostProcessingConfig.Plots.BasicFrequencyPlot{ID}.Enable     = 1;
+    PostProcessingConfig.Plots.BasicFrequencyPlot{ID}.Channels   = {'AutoSpectrum_TwrBsMyt'};
+    PostProcessingConfig.Plots.BasicFrequencyPlot{ID}.x          = 'f';
+    PostProcessingConfig.Plots.BasicFrequencyPlot{ID}.yCell      = {'S'};
+    PostProcessingConfig.Plots.BasicFrequencyPlot{ID}.ylabelCell = {'[(kNm)^2/Hz]'};  
+    PostProcessingConfig.Plots.BasicFrequencyPlot{ID}.xlabel     = 'frequency [Hz]';  
+    PostProcessingConfig.Plots.BasicFrequencyPlot{ID}.gca.xScale = 'log';
+    PostProcessingConfig.Plots.BasicFrequencyPlot{ID}.gca.yScale = 'log';
+    PostProcessingConfig.Plots.BasicFrequencyPlot{ID}.IndicesConsideredDataFiles        = [1:nSeed]+(iURef-1)*nSeed;   
+end
+ 
 end

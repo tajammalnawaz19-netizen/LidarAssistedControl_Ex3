@@ -31,5 +31,9 @@ PlotTimeResults(TimeResults,PostProcessingConfig);
 % Statistics
 Statistics                  = CalculateStatistics(TimeResults,PostProcessingConfig);
 
+% FrequencyResults
+FrequencyResults            = CalculateFrequencyResults(TimeResults,PostProcessingConfig);
+PlotFrequencyResults(FrequencyResults,PostProcessingConfig)
+
 % Evaluate only, if you want to overwrite the results: 
 save(['Statistics_',SimulationMode],'Statistics')
