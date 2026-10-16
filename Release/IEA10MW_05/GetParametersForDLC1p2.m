@@ -114,7 +114,8 @@ nSeed       = length(PreProcessingVariation{2,2});
 for iURef = 1:nURef
     ID = iURef;
     PostProcessingConfig.Plots.BasicTimePlot{ID}.Enable     = 1;
-    PostProcessingConfig.Plots.BasicTimePlot{ID}.Channels   = {'Wind1VelX';'BldPitch1';'RotSpeed';} ;
+    PostProcessingConfig.Plots.BasicTimePlot{ID}.Channels   = {'Wind1VelX';'BldPitch1';'RotSpeed';'TwrBsMyt'} ;
+     % PostProcessingConfig.Plots.BasicTimePlot{ID}.Channels   = {'TwrBsMyt'} ;
     PostProcessingConfig.Plots.BasicTimePlot{ID}.gca.xlim   = [0 600]+StartTime;
     PostProcessingConfig.Plots.BasicTimePlot{ID}.IndicesConsideredDataFiles = [1:nSeed]+(iURef-1)*nSeed;
 end
