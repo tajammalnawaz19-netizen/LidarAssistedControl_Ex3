@@ -34,7 +34,6 @@ disp(result)
 if status ~= 0
     error('OpenFAST did not run successfully.');
 end
-
 %% Read EOG results
 
 OutFile = fullfile(SimulationFolder,[SimulationName,'.outb']);
