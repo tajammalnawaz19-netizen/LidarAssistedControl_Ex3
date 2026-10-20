@@ -20,7 +20,7 @@ cd(SimulationPath);
 
 % Feedback only
 dos(['"..\OpenFAST\openfast_x64_v4.exe" ', ...
-    SimulationName,'_FB.fst']);
+    SimulationName,'_FB_2.6.fst']);
 
 % Feedback + feedforward
 dos(['"..\OpenFAST\openfast_x64_v4.exe" ', ...

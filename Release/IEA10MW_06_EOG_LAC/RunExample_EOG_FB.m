@@ -13,7 +13,7 @@ ExeFile = '..\OpenFAST\openfast_x64_v4.exe';
 SimulationFolder = '..\IEA10-198-RWT_LAC';
 
 % EOG simulation name
-SimulationName = 'IEA-10.0-198-RWT_EOG_FB';
+SimulationName = 'IEA-10.0-198-RWT_EOG_FB_2.6';
 
 % Full path to FST file
 FSTFile = fullfile(SimulationFolder,[SimulationName,'.fst']);
